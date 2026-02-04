@@ -4,13 +4,18 @@ import Link from "next/link";
 import { ReactNode } from "react";
 
 const sidebarMenus = [
-  { id: 1, label: "Overview", href: "/dashboard" },
-  { id: 2, label: "Students", href: "/dashboard/students" },
-  { id: 3, label: "Teachers", href: "/dashboard/teachers" },
-  { id: 4, label: "Classes", href: "/dashboard/classes" },
-  { id: 5, label: "Reports", href: "/dashboard/reports" },
-  { id: 6, label: "Settings", href: "/dashboard/settings" },
-];
+    {id:1, label:"Overview", href:"/dashboard"},
+    {id:2, label:"Attendance", href:"/dashboard/attendance"},
+    {id:3, label:"Leave", href:"/dashboard/leave"},
+    {id:4, label:"Approval", href:"/dashboard/approval"},
+    {id:5, label:"HR Reports", href:"/dashboard/hr_reports"},
+    {id:6, label:"General Setup", href:"/dashboard/general_setup"},
+    {id:7, label:"Payrolsl", href:"/dashboard/payrosll"},
+    {id:8, label:"Shift Setup", href:"/dashboard/Shift Setup"},
+    {id:9, label:"Employee Management", href:"/dashboard/employee_management"},
+    {id:10, label:"Management", href:"/dashboard/management"},
+    {id:11, label:"Performance", href:"/dashboard/performance"},
+]
 
 export default function DashboardLayout({
   children,
