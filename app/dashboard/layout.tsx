@@ -22,11 +22,11 @@ const sidebarMenus = [
       { id: "6-1", label: "Departments", href: "/dashboard/general_setup/departments" },
       { id: "6-2", label: "Locations", href: "/dashboard/general_setup/locations" },
     ]},
-    {id:7, label:"Payrolsl", href:"/dashboard/payrosll", subItems:[
-      { id: "7-1", label: "Runs", href: "/dashboard/payrosll/runs" },
-      { id: "7-2", label: "Deductions", href: "/dashboard/payrosll/deductions" },
+    {id:7, label:"Payroll", href:"/dashboard/payroll", subItems:[
+      { id: "7-1", label: "Runs", href: "/dashboard/payroll/runs" },
+      { id: "7-2", label: "Deductions", href: "/dashboard/payroll/deductions" },
     ]},
-    {id:8, label:"Shift Setup", href:"/dashboard/Shift Setup", subItems:[
+    {id:8, label:"Shift Setup", href:"/dashboard/shift-setup", subItems:[
       { id: "8-1", label: "Shifts", href: "/dashboard/shift-setup/shifts" },
       { id: "8-2", label: "Policies", href: "/dashboard/shift-setup/policies" },
     ]},
