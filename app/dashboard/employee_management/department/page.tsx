@@ -1,11 +1,30 @@
+"use client";
+import {useState} from "react";
+import DepartmentForm from "./components/DepartmentForm";
+import DepartmentTable from "./components/DepartmentTable";
+
 export default function Department() {
-  const departments = [
+
+  const [departments, setDepartments] = useState([
     { id: 1, name: "Finance" },
     { id: 2, name: "Human Resource" },
     { id: 3, name: "Information Technology" },
     { id: 4, name: "Management" },
     { id: 5, name: "Sales" },
-  ];
+  ]);
+
+    const [showTable, setShowTable] = useState(false);
+    const [showForm, setShowForm] = useState(false);
+
+    const addDepartment = (name: string)=> {
+      setDepartments(prev =>[
+        ...prev,
+        {id: Date.now(), name}
+      ]);
+      setShowForm(false);
+      setShowTable(false);
+    };
+
 
   return (
     <div className="min-h-screen bg-blue-50 text-gray-700 p-4">
@@ -21,53 +40,25 @@ export default function Department() {
           className="flex-1 border border-gray-300 px-3 py-2  text-sm"
         />
 
-        <button className="bg-blue-500 text-white px-4 py-2 text-sm  hover:bg-blue-600">
+        <button onClick={()=>setShowTable(true)} className="bg-blue-500 text-white px-4 py-2 text-sm  hover:bg-blue-600">
           Show
         </button>
 
-        <button className="bg-teal-600 text-white px-4 py-2 text-sm  hover:bg-teal-700">
+        <button onClick={()=>setShowForm(true)} className="bg-teal-600 text-white px-4 py-2 text-sm  hover:bg-teal-700">
           Add New
         </button>
       </div>
 
-      {/* Table section */}
-      <div className="bg-white  shadow-sm overflow-x-auto">
-        <h2 className="px-4 py-3 text-sm font-medium border-b">
-          Departments
-        </h2>
-
-        <table className="w-full text-sm border-collapse">
-          <thead className="bg-gray-100 text-gray-600">
-            <tr>
-              <th className="px-4 py-2 text-left">Name</th>
-              <th className="px-4 py-2 text-center">Edit</th>
-              <th className="px-4 py-2 text-center">Delete</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {departments.map((dept, index) => (
-              <tr
-                key={dept.id}
-                className={`border-t ${
-                  index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                } hover:bg-gray-100`}
-              >
-                <td className="px-4 py-3">{dept.name}</td>
-
-                <td className="px-4 py-3 text-center cursor-pointer">
-                  ✏️
-                </td>
-
-                <td className="px-4 py-3 text-center cursor-pointer">
-                  🗑️
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
+      {showForm && (
+        <DepartmentForm 
+        onSave={addDepartment}
+        onClose={()=>setShowForm(false)}
+        />
+      )}
+         
+      {showTable && (
+        <DepartmentTable departments={departments} />
+      )}
     </div>
   );
 }
