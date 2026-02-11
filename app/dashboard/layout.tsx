@@ -31,8 +31,8 @@ const sidebarMenus = [
       { id: "8-2", label: "Policies", href: "/dashboard/shift-setup/policies" },
     ]},
     {id:9, label:"Employee Management", href:"/dashboard/employee_management", subItems:[
-      { id: "9-1", label: "Employees", href: "/dashboard/employee_management/" },
-      { id: "9-2", label: "Contracts", href: "/dashboard/employee_management/contracts" },
+      { id: "9-1", label: "Employee Info", href: "/dashboard/employee_management/emp_info" },
+      { id: "9-2", label: "Department", href: "/dashboard/employee_management/department" },
     ]},
     {id:10, label:"Management", href:"/dashboard/management", subItems:[
       { id: "10-1", label: "Teams", href: "/dashboard/management/teams" },
