@@ -28,13 +28,13 @@ export const employees=[
     "id": "e1",
     "employeeCode": "EMP001",
     "firstName": "Kruthi",
-    "lastName": "Anu",
+    "lastName": "C B",
     "gender": "Female",
     "dateOfBirth": "1999-08-15",
     "email": "kruthi@company.com",
     "phone": "9876543210",
-    "hireDate": "2021-05-01",
-    "joiningDate": "2021-06-01",
+    "hireDate": "2026-01-01",
+    "joiningDate": "2026-01-03",
     "employmentStatus": "ACTIVE",
     "departmentId": "d1",
     "designationId": "des3",
@@ -141,21 +141,27 @@ const attendancePunch=[
   }
 ]
 
-const attendanceDailySummary=[
+export const attendanceDailySummary = [
   {
-    "id": "ad1",
-    "employeeId": "e1",
-    "date": "2023-10-01",
-    "shiftId": "s1",
-    "firstIn": "09:10",
-    "lastOut": "18:05",
-    "totalWorkingMinutes": 535,
-    "lateMinutes": 10,
-    "overtimeMinutes": 5,
-    "attendanceStatus": "PRESENT",
-    "isAdjusted": false
-  }
-]
+    id: "ad1",
+    employeeId: "e1",
+    date: "2026-01-04",
+    firstIn: "09:10",
+    lastOut: "18:05",
+    totalWorkingMinutes: 535,
+    attendanceStatus: "PRESENT",
+  },
+  {
+    id: "ad2",
+    employeeId: "e1",
+    date: "2026-01-10",
+    firstIn: "09:00",
+    lastOut: "18:00",
+    totalWorkingMinutes: 540,
+    attendanceStatus: "PRESENT",
+  },
+];
+
 
 const leaveTypes=[
   {

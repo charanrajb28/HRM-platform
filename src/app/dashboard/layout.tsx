@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, useEffect } from "react";
+import { usePathname , useSearchParams} from "next/navigation";
 
 const sidebarMenus = [
     {id:1, label:"Overview", href:"/dashboard"},
-    {id:2, label:"Attendance", href:"/dashboard/attendance", subItems:[
-      { id: "2-1", label: "Daily", href: "/dashboard/attendance/daily" },
-      { id: "2-2", label: "Monthly", href: "/dashboard/attendance/monthly" },
+    {id:2, label:"Attendance", href:"#", subItems:[
+      { id: "2-1", label: "Report", href: "/dashboard/attendance/report" },
+      { id: "2-2", label: "Summary", href: "/dashboard/attendance/summary" },
     ]},
     {id:3, label:"Leave", href:"/dashboard/leave", subItems:[
       { id: "3-1", label: "Requests", href: "/dashboard/leave/requests" },
@@ -31,7 +32,7 @@ const sidebarMenus = [
       { id: "8-2", label: "Policies", href: "/dashboard/shift-setup/policies" },
     ]},
     {id:9, label:"Employee Management", href:"/dashboard/employee_management", subItems:[
-      { id: "9-1", label: "Employees", href: "/dashboard/employee_management/" },
+      { id: "9-1", label: "Employees", href: "/dashboard/employee_management/emp_info" },
       { id: "9-2", label: "Contracts", href: "/dashboard/employee_management/contracts" },
     ]},
     {id:10, label:"Management", href:"/dashboard/management", subItems:[
@@ -50,11 +51,22 @@ export default function DashboardLayout({
   children: ReactNode;
 }) {
   const [expandedMenuId, setExpandedMenuId] = useState<number | null>(null);
+  const pathname= usePathname();
+  const searchParams= useSearchParams();
 
   const toggleMenu = (menuId: number, hasSubItems: boolean) => {
     if (!hasSubItems) return;
     setExpandedMenuId((current) => (current === menuId ? null : menuId));
   };
+
+  useEffect(()=>{
+    const activeMenu=sidebarMenus.find(menu=>
+      menu.subItems?.some(sub=>pathname.startsWith(sub.href))
+    );
+    if(activeMenu){
+      setExpandedMenuId(activeMenu.id);
+    }
+  },[pathname]);
 
   return (
     <div className="flex h-screen">
@@ -122,11 +134,16 @@ export default function DashboardLayout({
                       {menu.subItems?.map((subItem) => (
                         <li key={subItem.id}>
                           <Link
-                            href={subItem.href}
-                            className="block px-3 py-1.5 rounded-md text-sm text-gray-300 hover:bg-gray-800 hover:text-white transition-colors"
-                          >
-                            {subItem.label}
-                          </Link>
+  href={`${subItem.href}?${searchParams.toString()}`}
+  className={`block px-3 py-1.5 rounded-md text-sm transition-colors ${
+    pathname === subItem.href
+      ? "bg-gray-700 text-white"
+      : "text-gray-300 hover:bg-gray-800 hover:text-white"
+  }`}
+>
+  {subItem.label}
+</Link>
+
                         </li>
                       ))}
                     </ul>
