@@ -1,4 +1,4 @@
-import { getAttendanceReport } from "@/src/modules/attendance/services/attendance.service";
+import { getAttendanceReport } from "@/modules/attendance/services/attendance.service";
 
 export default async function ReportPage({
   searchParams,

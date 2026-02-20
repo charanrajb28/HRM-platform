@@ -2,50 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-const emp_data = [
-  {
-    id: "EMP001",
-    name: "Kruthi",
-    email: "kruthianu66@gmail.com",
-    department: "Developers",
-    authority: "Admin",
-  },
-  {
-    id: "EMP002",
-    name: "Alice",
-    email: "alice.sales@company.com",
-    department: "Sales",
-    authority: "Manager",
-  },
-  {
-    id: "EMP003",
-    name: "Bob",
-    email: "bob.sales@company.com",
-    department: "Sales",
-    authority: "Executive",
-  },
-  {
-    id: "EMP004",
-    name: "Charlie",
-    email: "charlie.dev@company.com",
-    department: "Developers",
-    authority: "Developer",
-  },
-  {
-    id: "EMP005",
-    name: "David",
-    email: "david.dev@company.com",
-    department: "Developers",
-    authority: "Senior Developer",
-  },
-  {
-    id: "EMP006",
-    name: "Anita",
-    email: "anita.hr@company.com",
-    department: "HR",
-    authority: "HR Manager",
-  },
-];
+import { employees as emp_data } from "@/app/data/dummy";
 
 export default function EmployeeTable(){
   return (

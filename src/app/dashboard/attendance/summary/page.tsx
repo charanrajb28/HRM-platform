@@ -1,4 +1,4 @@
-import { getAttendanceSummary } from "@/src/modules/attendance/services/summary.service";
+import { getAttendanceSummary } from "@/modules/attendance/services/summary.service";
 export default async function SummaryPage({searchParams,}:{searchParams: Promise<{
     name?: string;
     start?: string;

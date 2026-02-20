@@ -1,5 +1,5 @@
-import { employees } from "@/src/lib/data/employee.data";
-import { attendanceDailySummary } from "@/src/lib/data/attendance.data";
+import { employees } from "@/lib/data/employee.data";
+import { attendanceDailySummary } from "@/lib/data/attendance.data";
 import { join } from "path";
 
 type SummaryFilters= {
