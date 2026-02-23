@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 
-import { employees } from "@/app/data/dummy";
+import { employees, departments } from "@/app/data/dummy";
 
 export default function EditEmployee({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = React.use(params);
@@ -38,10 +38,14 @@ export default function EditEmployee({ params }: { params: Promise<{ id: string 
     { label: "Swift Code", defaultValue: emp?.swiftCode },
   ];
 
+  const [selectedDeptId, setSelectedDeptId] = useState<number | string>(emp?.departmentId || "");
+  const selectedDept = departments.find(d => d.id === Number(selectedDeptId));
+  const roleOptions = selectedDept?.roles?.map(r => ({ label: r.name, value: r.name })) || [];
+
   const employmentMetaFields = [
     { label: "Location", defaultValue: emp?.location },
-    { label: "Designation", defaultValue: emp?.designation },
-    { label: "Department", defaultValue: emp?.departmentId },
+    { label: "Designation", defaultValue: emp?.designation, options: roleOptions },
+    { label: "Department", value: selectedDeptId, onChange: (e: any) => setSelectedDeptId(e.target.value), options: departments.map(d => ({ label: d.name, value: d.id })) },
     { label: "CNIC", numeric: true, defaultValue: emp?.cnic },
     { label: "Employment Code", defaultValue: emp?.employmentCode },
     { label: "Separation Date", type: "date", defaultValue: emp?.separationDate },
@@ -52,14 +56,39 @@ export default function EditEmployee({ params }: { params: Promise<{ id: string 
     type?: string;
     numeric?: boolean;
     defaultValue?: string | number;
+    value?: string | number;
+    onChange?: (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+    options?: { label: string; value: string | number }[];
   };
 
-  const InputField = ({ label, type = "text", numeric, defaultValue }: FieldProps) => (
+  const InputField = ({ label, type = "text", numeric, defaultValue, value, onChange, options }: FieldProps) => (
     <div>
       <label className="block text-sm text-gray-600 mb-1">
         {label}
       </label>
-      <input type={type} inputMode={numeric ? "numeric" : undefined} onInput={numeric ? allowOnlyNumbers : undefined} defaultValue={defaultValue || ""} className="w-full border border-gray-300 px-3 py-2" />
+      {options ? (
+        <select
+          onChange={onChange as any}
+          {...(value !== undefined ? { value } : { defaultValue: defaultValue || "" })}
+          className="w-full border border-gray-300 px-3 py-2 text-gray-600 bg-white"
+        >
+          <option value="">Select {label}</option>
+          {options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      ) : (
+        <input
+          type={type}
+          inputMode={numeric ? "numeric" : undefined}
+          onInput={numeric ? allowOnlyNumbers : undefined}
+          onChange={onChange as any}
+          {...(value !== undefined ? { value } : { defaultValue: defaultValue || "" })}
+          className="w-full border border-gray-300 px-3 py-2"
+        />
+      )}
     </div>
   );
 

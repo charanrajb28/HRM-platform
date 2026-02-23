@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { employees } from "@/lib/data/employee.data";
 
 export default function AttendanceLayout({
   children,
@@ -24,7 +25,7 @@ export default function AttendanceLayout({
   }, [searchParams]);
 
   const handleSearch = () => {
-    if(!name || !startDate || !endDate){
+    if (!name || !startDate || !endDate) {
       return;
     }
     const query = new URLSearchParams({
@@ -47,13 +48,21 @@ export default function AttendanceLayout({
       <div className="w-full bg-white py-3 my-3">
         <div className="flex gap-4 w-full px-4 items-center">
 
-          <input
-            type="text"
-            placeholder="Employee Name"
+          <select
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="border border-gray-400 px-4 py-2  bg-white"
-          />
+            className="border border-gray-400 px-4 py-2 bg-white"
+          >
+            <option value="">Select Employee</option>
+            {employees.map((emp) => {
+              const fullName = `${emp.firstName} ${emp.lastName}`;
+              return (
+                <option key={emp.id} value={fullName}>
+                  {fullName}
+                </option>
+              );
+            })}
+          </select>
 
           <input
             type="date"
@@ -83,7 +92,7 @@ export default function AttendanceLayout({
       </div>
 
       {/* Navigation Tabs */}
-      
+
 
       {/* Main Area */}
       <div className="bg-white mx-4 p-4 ">

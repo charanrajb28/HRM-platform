@@ -1,6 +1,7 @@
 export type Department = {
   id: number;
   name: string;
+  roles?: { name: string; rate: number }[];
 };
 
 export type Shift = {
@@ -104,11 +105,11 @@ export type LeaveRequest = {
 };
 
 export const departments: Department[] = [
-  { id: 1, name: "Finance" },
-  { id: 2, name: "Human Resource" },
-  { id: 3, name: "Information Technology" },
-  { id: 4, name: "Management" },
-  { id: 5, name: "Sales" },
+  { id: 1, name: "Finance", roles: [{ name: "Analyst", rate: 30 }, { name: "Manager", rate: 50 }] },
+  { id: 2, name: "Human Resource", roles: [{ name: "HR Manager", rate: 45 }, { name: "Recruiter", rate: 25 }] },
+  { id: 3, name: "Information Technology", roles: [{ name: "Developer", rate: 40 }, { name: "Admin", rate: 35 }] },
+  { id: 4, name: "Management", roles: [{ name: "Director", rate: 80 }, { name: "VP", rate: 100 }] },
+  { id: 5, name: "Sales", roles: [{ name: "Sales Rep", rate: 20 }, { name: "Area Manager", rate: 40 }] },
 ];
 
 export const shifts: Shift[] = [

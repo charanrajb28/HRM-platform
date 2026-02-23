@@ -40,7 +40,7 @@ const sidebarMenus = [
   {
     id: 8, label: "Shift Setup", href: "/dashboard/shift-setup", subItems: [
       { id: "8-1", label: "Shifts", href: "/dashboard/shift-setup/shifts" },
-      { id: "8-2", label: "Policies", href: "/dashboard/shift-setup/policies" },
+      { id: "8-2", label: "Assign Shift", href: "/dashboard/shift-setup/assign-shift" },
     ]
   },
   {
@@ -153,8 +153,8 @@ export default function DashboardLayout({
                           <Link
                             href={`${subItem.href}?${searchParams.toString()}`}
                             className={`block px-3 py-1.5 rounded-md text-sm transition-colors ${pathname === subItem.href
-                                ? "bg-gray-700 text-white"
-                                : "text-gray-300 hover:bg-gray-800 hover:text-white"
+                              ? "bg-gray-700 text-white"
+                              : "text-gray-300 hover:bg-gray-800 hover:text-white"
                               }`}
                           >
                             {subItem.label}
